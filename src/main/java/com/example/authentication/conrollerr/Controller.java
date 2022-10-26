@@ -64,8 +64,8 @@ public class Controller{
         return ResponseEntity.ok(UniversalResponse.builder().message("user saved to roles").build());
 
 }
-    @PostMapping("/token/refresh")
-    public void  refreshToken(@RequestBody HttpServletRequest request, HttpServletResponse response) throws IOException {
+    @GetMapping("/token/refresh")
+    public void  refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String authorizationHeader = request.getHeader(AUTHORIZATION);
 
         if (authorizationHeader!=null && authorizationHeader.startsWith("Bearer ")){
@@ -93,7 +93,9 @@ public class Controller{
             }catch (Exception e) {
                 response.setHeader("error", e.getMessage());
                 response.setStatus(FORBIDDEN.value());
-//                    response.sendError(FORBIDDEN.value());
+                /** @  response.sendError(FORBIDDEN.value());
+                 *
+                 */
                 Map<String, String> error = new HashMap<>();
                 error.put("error_message :", e.getMessage());
                 response.setContentType(APPLICATION_JSON_VALUE);

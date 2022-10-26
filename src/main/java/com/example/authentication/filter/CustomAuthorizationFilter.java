@@ -29,14 +29,13 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @Slf4j
 public class CustomAuthorizationFilter extends OncePerRequestFilter {
     @Override
-//    ||request.getServletPath().equals("api/token/refresh/**"
+//
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        if (request.getServletPath().equals("/login")){
+        if (request.getServletPath().equals("/login")||request.getServletPath().equals("api/token/refresh/**")){
             filterChain.doFilter(request,response);
         }else  {
             String authorizationHeader = request.getHeader(AUTHORIZATION);
             if (authorizationHeader!=null && authorizationHeader.startsWith("Bearer ")){
-
                 try {
                     String token = authorizationHeader.substring("Bearer ".length());
                     //put the secret in a secret vault
@@ -47,10 +46,10 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
                     System.out.println(username);
                     String[] roles = decodedJWT.getClaim("roles").asArray(String.class);
                     Collection<SimpleGrantedAuthority>authorities = new ArrayList<>();
-                    stream(roles).forEach(role ->{
+                    stream(roles).forEach(role -> {
                         authorities.add(new SimpleGrantedAuthority(role));
                     });
-                    UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username,authorities);
+                    UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username,null,authorities);
                     SecurityContextHolder.getContext().setAuthentication(authenticationToken);
                     filterChain.doFilter(request,response);
                 }catch (Exception e){
