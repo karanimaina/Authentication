@@ -17,7 +17,6 @@ import java.util.Collections;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AppUser {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
