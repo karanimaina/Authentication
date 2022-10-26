@@ -18,7 +18,6 @@ public class UniversalResponse {
 
 
 
-
     private int status;
     private Object data;
     private String message;
