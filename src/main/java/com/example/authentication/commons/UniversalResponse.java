@@ -7,7 +7,6 @@ import lombok.Data;
 @Data
 @Builder
 public class UniversalResponse {
-
     private int status;
     private Object data;
     private String message;
