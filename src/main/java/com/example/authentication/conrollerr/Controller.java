@@ -42,7 +42,6 @@ public class Controller{
         return ResponseEntity.created(uri).body(UniversalResponse.builder().status(200).message("user created").data(appUser1).build());
     }
     @GetMapping("/get/user")
-
     ResponseEntity <UniversalResponse>getUsers(){
        List<AppUser> userList = userService.getUser();
        return ResponseEntity.ok().body(UniversalResponse.builder().status(200).message("user retrieved").data(userList).build());
