@@ -36,7 +36,6 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class Controller{
     private final UserService userService;
     @PostMapping("/add/user")
-
     ResponseEntity <UniversalResponse>addUsers(@RequestBody AppUser appUser){
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentRequestUri().path("/api/add/user").toUriString());
         AppUser appUser1 = userService.saveUser(appUser);
