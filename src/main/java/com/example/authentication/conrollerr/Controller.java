@@ -71,7 +71,6 @@ public class Controller{
         if (authorizationHeader!=null && authorizationHeader.startsWith("Bearer ")){
 
             try {
-
                 String refreshToken = authorizationHeader.substring("Bearer ".length());
                 Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
                 JWTVerifier verifier = JWT.require(algorithm).build();
