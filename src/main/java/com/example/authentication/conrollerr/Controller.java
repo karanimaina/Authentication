@@ -48,6 +48,7 @@ public class Controller{
 
 
 
+
        return ResponseEntity.ok().body(UniversalResponse.builder().status(200).message("user retrieved").data(userList).build());
     }
     @PostMapping("/add/role")
