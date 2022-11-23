@@ -44,6 +44,7 @@ public class Controller{
     @GetMapping("/get/user")
     ResponseEntity <UniversalResponse>getUsers(){
        List<AppUser> userList = userService.getUser();
+
        return ResponseEntity.ok().body(UniversalResponse.builder().status(200).message("user retrieved").data(userList).build());
     }
     @PostMapping("/add/role")
