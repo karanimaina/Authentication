@@ -60,9 +60,11 @@ public class Controller{
 
 @PostMapping("/role/add/role/user")
     ResponseEntity<UniversalResponse>addRoleToUser(@RequestBody RoleToUser roleToUser){
+
         userService.addRoleToUser(roleToUser.getUsername(),roleToUser.getRoleName());
         return ResponseEntity.ok(UniversalResponse.builder().message("user saved to roles").build());
 }
+
     @GetMapping("/token/refresh")
     public void  refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String authorizationHeader = request.getHeader(AUTHORIZATION);
