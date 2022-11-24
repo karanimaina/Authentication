@@ -65,8 +65,7 @@ public class Controller{
         return ResponseEntity.ok(UniversalResponse.builder().message("user saved to roles").build());
 }
 
-    @GetMapping("/token/refresh" +
-            "")
+    @GetMapping("/token/refresh")
     public void  refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String authorizationHeader = request.getHeader(AUTHORIZATION);
         if (authorizationHeader!=null && authorizationHeader.startsWith("Bearer ")){
