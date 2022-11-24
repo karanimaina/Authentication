@@ -69,7 +69,6 @@ public class Controller{
         String authorizationHeader = request.getHeader(AUTHORIZATION);
 
 
-
         if (authorizationHeader!=null && authorizationHeader.startsWith("Bearer ")){
             try {
                 String refreshToken = authorizationHeader.substring("Bearer ".length());
