@@ -60,7 +60,6 @@ public class Controller{
 
 @PostMapping("/role/add/role/user")
     ResponseEntity<UniversalResponse>addRoleToUser(@RequestBody RoleToUser roleToUser){
-
         userService.addRoleToUser(roleToUser.getUsername(),roleToUser.getRoleName());
         return ResponseEntity.ok(UniversalResponse.builder().message("user saved to roles").build());
 }
