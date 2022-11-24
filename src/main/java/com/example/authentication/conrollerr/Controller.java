@@ -44,11 +44,6 @@ public class Controller{
     @GetMapping("/get/user")
     ResponseEntity <UniversalResponse>getUsers(){
        List<AppUser> userList = userService.getUser();
-
-
-
-
-
        return ResponseEntity.ok().body(UniversalResponse.builder().status(200).message("user retrieved").data(userList).build());
     }
     @PostMapping("/add/role")
@@ -75,6 +70,7 @@ public class Controller{
 
         if (authorizationHeader!=null && authorizationHeader.startsWith("Bearer ")){
 
+            
             try {
                 String refreshToken = authorizationHeader.substring("Bearer ".length());
                 Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
@@ -88,7 +84,6 @@ public class Controller{
                         .withIssuer(request.getRequestURL().toString())
                         .withClaim("roles",user.getRole().stream().map(Role::getName).collect(Collectors.toList()))
                         .sign(algorithm);
-//
                 Map<String,String> tokens = new HashMap<>();
                 tokens.put("access_token",accessToken);
                 tokens.put("refresh_token",refreshToken);
